@@ -192,8 +192,6 @@ def home_page():
         st.markdown("### 📸 Upload Photo")
         st.markdown("Submit a single image of your exam room")
         if st.button("Go to Photo Upload", key="go_photo"):
-            st.switch_page("streamlit_app.py")  # We'll use query params to simulate page
-            # Actually we'll set session state to change page
             st.session_state.page = "photo"
             st.rerun()
         st.markdown('</div>', unsafe_allow_html=True)
@@ -261,7 +259,7 @@ def video_page():
         st.button("🌓 Toggle Theme", on_click=toggle_theme, key="video_theme")
     
     st.markdown("Upload a video recording of your room")
-    uploaded_video = st.file_uploader("Choose a video", type=['mp4','avi','mov'], label_visibility="collapsed")
+    uploaded_video = st.file_uploader("Choose a video", type=['mp4','avi','mov','mpeg4'], label_visibility="collapsed")
     if uploaded_video is not None:
         with st.spinner("Processing video (may take a while)..."):
             eligible, reason = process_video(uploaded_video)
